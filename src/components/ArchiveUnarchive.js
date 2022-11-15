@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 
 const { RiInboxArchiveLine, RiInboxUnarchiveLine } = require("react-icons/ri");
@@ -11,11 +12,11 @@ export default function ArchiveUnarchive(props) {
 
   return isArchived ? (
     <RiInboxUnarchiveLine
+      className="text-3xl text-green-600 duration-150 cursor-pointer hover:text-green-800 hover:scale-110"
       onClick={() => {
         unarchiveNote(id);
         navigate("/");
       }}
-      className="text-3xl text-green-600 duration-150 cursor-pointer hover:text-green-800 hover:scale-110"
     />
   ) : (
     <RiInboxArchiveLine
@@ -27,3 +28,8 @@ export default function ArchiveUnarchive(props) {
     />
   );
 }
+
+ArchiveUnarchive.propTypes = {
+  id: PropTypes.string.isRequired,
+  archived: PropTypes.bool.isRequired,
+};

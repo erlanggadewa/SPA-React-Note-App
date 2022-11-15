@@ -1,7 +1,9 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate, useParams } from "react-router-dom";
 import ArchiveUnarchive from "../components/ArchiveUnarchive";
+import Header from "../components/Header";
 import { showFormattedDate } from "../utils";
 import { deleteNote, getNote } from "../utils/local-data";
 
@@ -12,6 +14,7 @@ export default function DetailNote() {
 
   return (
     <>
+      <Header />
       <div className="overflow-hidden bg-white shadow sm:rounded-lg">
         <div className="flex items-center justify-between px-4 py-5 sm:px-6">
           <h3 className="text-lg font-medium leading-6 text-gray-900">
@@ -60,3 +63,7 @@ export default function DetailNote() {
     </>
   );
 }
+
+DetailNote.propTypes = {
+  id: PropTypes.string.isRequired,
+};
