@@ -1,8 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { showFormattedDate } from "../utils";
+import { addNote } from "../utils/local-data";
 import SuccessAlert from "./SuccessAlert";
 
-export default class CreateNoteForms extends React.Component {
+export default function CreateNoteFormsWrapper() {
+  const navigate = useNavigate();
+  return <CreateNoteForms navigate={navigate} />;
+}
+
+class CreateNoteForms extends React.Component {
   constructor(props) {
     super(props);
 
@@ -14,7 +21,7 @@ export default class CreateNoteForms extends React.Component {
       createdAt: new Date().toISOString(),
       title: "",
       body: "",
-      isShowSuccessAlert: true,
+      isShowSuccessAlert: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -31,12 +38,12 @@ export default class CreateNoteForms extends React.Component {
   }
 
   async generateImage() {
-    await fetch("https://source.unsplash.com/random")
+    await fetch("https://source.unsplash.com/random?nature,sky")
       .then((res) => {
         this.setImgUrl(res.url);
       })
       .catch((err) => {
-        this.setImgUrl("https://source.unsplash.com/random");
+        this.setImgUrl("https://source.unsplash.com/random?nature,sky");
         throw err;
       });
   }
@@ -48,6 +55,7 @@ export default class CreateNoteForms extends React.Component {
         isShowSuccessAlert: !prev.isShowSuccessAlert,
       };
     });
+    this.props.navigate("/");
   }
 
   handleChange(event) {
@@ -60,8 +68,11 @@ export default class CreateNoteForms extends React.Component {
   }
 
   handleSubmit(event) {
-    alert("Note anda berhasil tersubmit");
+    this.setState(() => {
+      return { isShowSuccessAlert: true };
+    });
 
+    addNote(this.state);
     event.preventDefault();
   }
 
@@ -73,7 +84,7 @@ export default class CreateNoteForms extends React.Component {
             <SuccessAlert toggleHandler={this.successAlertToggle} />
           )}
         </div>
-        <div className="rounded-md shadow-xl ring-green-300 ring md:col-span-2 md:mt-0">
+        <div className="rounded-md shadow-xl ring-slate-300 ring md:col-span-2 md:mt-0">
           <form onSubmit={this.handleSubmit}>
             <div className="shadow sm:overflow-hidden sm:rounded-md">
               <div className="px-4 py-5 space-y-6 bg-white sm:p-6">
@@ -113,7 +124,7 @@ export default class CreateNoteForms extends React.Component {
                       <textarea
                         id="body"
                         name="body"
-                        rows={5}
+                        rows={15}
                         className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         placeholder="Isi Note ..."
                         value={this.state.body}

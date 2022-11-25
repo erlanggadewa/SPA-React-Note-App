@@ -12,8 +12,8 @@ export default function SuccessAlert(props) {
       }}
     >
       <span>
-        <span className="font-medium">Info alert!</span> Change a few things up
-        and try submitting again.
+        <span className="font-medium">Info alert!</span> Catatan berhasil
+        ditambahkan
       </span>
     </Alert>
   );

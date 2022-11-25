@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate, useParams } from "react-router-dom";
@@ -63,7 +62,3 @@ export default function DetailNote() {
     </>
   );
 }
-
-DetailNote.propTypes = {
-  id: PropTypes.string.isRequired,
-};
