@@ -4,10 +4,6 @@ import Header from "../components/Header";
 import Search from "../components/Search";
 import { getArchivedNotes } from "../utils/local-data";
 
-function ArchivesWrapper() {
-  return <Archives />;
-}
-
 class Archives extends React.Component {
   constructor(props) {
     super(props);
@@ -54,4 +50,4 @@ class Archives extends React.Component {
   }
 }
 
-export default ArchivesWrapper;
+export default Archives;

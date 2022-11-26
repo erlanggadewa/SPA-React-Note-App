@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import ArchivesWrapper from "../pages/Archives";
+import Archives from "../pages/Archives";
 import DetailNote from "../pages/DetailNote";
 import Home from "../pages/Home";
 import NewNote from "../pages/NewNote";
@@ -11,7 +11,7 @@ export default function Main() {
     <main>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/archives" element={<ArchivesWrapper />} />
+        <Route path="/archives" element={<Archives />} />
         <Route path="/notes/:id" element={<DetailNote />} />
         <Route path="/new" element={<NewNote />} />
         <Route path="*" element={<NotFound />} />

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { showFormattedDate } from "../utils";
@@ -178,3 +179,7 @@ class CreateNoteForms extends React.Component {
     );
   }
 }
+
+CreateNoteForms.propTypes = {
+  navigate: PropTypes.func.isRequired,
+};
